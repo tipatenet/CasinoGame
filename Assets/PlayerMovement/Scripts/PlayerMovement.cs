@@ -7,8 +7,6 @@ public class PlayerMovement : NetworkBehaviour
     public float moveSpeed = 5f;
     public float mouseSensitivity = 100f;
 
-    [SerializeField] private Vector3 heightCamPos = new Vector3(0, 1.5f, 0);
-
     private CharacterController controller;
     private PlayerInputHandler inputs;
 
@@ -27,8 +25,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private void InitializePlayer()
     {
-        Camera.main.transform.SetParent(transform);
-        Camera.main.transform.localPosition = heightCamPos;
+        Camera.main.transform.SetParent(transform.GetChild(0));
+        Camera.main.transform.localPosition = Vector3.zero;
 
         Cursor.lockState = CursorLockMode.Locked;
     }
