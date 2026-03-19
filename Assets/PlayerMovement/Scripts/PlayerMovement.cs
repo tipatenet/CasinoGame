@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using Mirror;
+﻿using Mirror;
+using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -9,12 +10,14 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Vector3 heightCamPos = new Vector3(0, 1.5f, 0);
 
     private CharacterController controller;
+    private PlayerInputHandler inputs;
 
     float xRotation = 0f;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        inputs = GetComponent<PlayerInputHandler>();
     }
 
     public override void OnStartLocalPlayer()
@@ -39,21 +42,19 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     // Déplacement
+
     private void MovePlayer()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * h + transform.forward * v;
-
+        Vector3 move = (transform.forward * inputs.MoveInput.y)
+             + (transform.right * inputs.MoveInput.x);
         controller.Move(move * moveSpeed * Time.deltaTime);
     }
 
     // Rotation caméra + joueur
     private void Look()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = inputs.LookInput.x * mouseSensitivity * Time.deltaTime;
+        float mouseY = inputs.LookInput.y * mouseSensitivity * Time.deltaTime;
 
         // Rotation verticale (caméra)
         xRotation -= mouseY;

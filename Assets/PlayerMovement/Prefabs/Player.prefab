@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3070945188165161441}
   - component: {fileID: 1293798949479177584}
   - component: {fileID: 1652452106587573775}
+  - component: {fileID: 6173591382910967686}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -206,6 +207,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c0d16f38e451b43a6342a2d2b5952d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  moveSpeed: 5
+  mouseSensitivity: 100
+  heightCamPos: {x: 0, y: 1.5, z: 0}
+--- !u!114 &6173591382910967686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672891008013577703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27953fc263318ff4b8dc766c2e7d971d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
